@@ -32,11 +32,6 @@ var MONGODB_URI =
 
 mongoose.connect(MONGODB_URI);
 
-// Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/unit18Populater", {
-  useNewUrlParser: true
-});
-
 // Routes
 
 // A GET route for scraping the echoJS website
