@@ -11,7 +11,7 @@ var cheerio = require("cheerio");
 // Require all models
 var db = require("./models");
 
-var PORT = 3000;
+var PORT = process.env.PORT || 3000;
 
 // Initialize Express
 var app = express();
@@ -30,6 +30,7 @@ app.use(express.static("public"));
 var MONGODB_URI =
   process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 
+// mongoose.connect(MONGODB_URI);
 mongoose.connect(MONGODB_URI);
 
 // Routes
@@ -49,8 +50,7 @@ app.get("/scrape", function(req, res) {
       // Add the text and href of every link, and save them as properties of the result object
       result.title = $(this)
         .children()
-        .text()
-        .trim();
+        .text();
       result.link = $(this)
         .find("a")
         .attr("href");
